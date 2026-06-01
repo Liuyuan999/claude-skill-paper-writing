@@ -2,10 +2,7 @@
 
 A [Claude Code](https://claude.ai/code) skill for writing academic papers in machine
 learning, optimization, and theory. Encodes both general best practices and the "house
-style" of the [Tianyi Chen](https://chen.tech.cornell.edu/) group
-([Lisha Chen](https://lisha-chen.github.io/),
-[Quan Xiao](https://jenniferquanxiao.github.io/),
-[Liuyuan Jiang](https://liuyuan999.github.io/)).
+style" of the group of [Lisha Chen](https://lisha-chen.github.io/) and [Tianyi Chen](https://chen.tech.cornell.edu/).
 
 ## What it does
 
