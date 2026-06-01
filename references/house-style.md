@@ -1,7 +1,6 @@
-# House Style — Tianyi Chen / Lisha Chen / Quan Xiao / Liuyuan Jiang
+# House Style
 
-The "house style" of this collaboration (centered on Tianyi Chen, with Lisha Chen, Quan
-Xiao, Liuyuan Jiang) is highly consistent across their bilevel-optimization and
+The "house style" of this collaboration is highly consistent across their bilevel-optimization and
 multi-objective-learning theory papers. Match these patterns when the user is in the group
 or wants this style. All templates below are **paraphrased patterns** — generate fresh
 prose, never paste from their published papers.
