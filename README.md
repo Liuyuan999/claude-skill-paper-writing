@@ -25,7 +25,7 @@ When invoked, the skill:
 
 ```bash
 # Clone into your Claude skills directory
-git clone https://github.com/<your-username>/paper-writing \
+git clone https://github.com/Liuyuan999/paper-writing \
     ~/.claude/skills/paper-writing
 ```
 
