@@ -80,8 +80,7 @@ paper-writing/
 - Justin Zobel, *Writing for Computer Science*
 - Devi Parikh et al., [*How we write rebuttals*](https://deviparikh.medium.com/how-we-write-rebuttals-dc84742fece1)
 
-**House style** extracted from papers by Tianyi Chen, Lisha Chen, Quan Xiao, and Liuyuan
-Jiang in bilevel optimization and multi-objective learning (NeurIPS 2024/2025, ICML 2025,
+**House style** extracted from papers Lisha Chen and Tianyi Chen's lab in bilevel optimization and multi-objective learning (NeurIPS 2024/2025, ICML 2025,
 ICLR 2025, JMLR 2024, Math. Programming 2025).
 
 ## Notes
