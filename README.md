@@ -1,91 +1,95 @@
-# paper-writing — Claude Code Skill
+# Academic Research Skills
 
-A [Claude Code](https://claude.ai/code) skill for writing academic papers in machine
-learning, optimization, and theory. Encodes both general best practices and the "house
-style" of the group of [Lisha Chen](https://lisha-chen.github.io/) and [Tianyi Chen](https://chen.tech.cornell.edu/).
+A compact skill suite for writing and auditing papers in optimization, machine learning, theoretical ML, algorithms, and applied ML.
 
-## What it does
+The suite targets NeurIPS, ICML, ICLR, AISTATS, ICASSP, IEEE-style venues, and optimization or theoretical ML journals. It favors direct technical prose, explicit claim discipline, and optimization-aware review.
 
-When invoked, the skill:
-1. Clarifies your venue, page limit, and the paper's one core idea.
-2. Routes to the relevant reference files (abstract/intro templates, theory conventions,
-   experiments standards, or a paper-type playbook).
-3. Drafts or reviews sections with the appropriate structure, notation, and style.
+## Skills
 
-## Paper types covered
+- **paper-writing** drafts and revises paper sections. It is the central skill.
+- **paper-review** runs eight reviewer-style passes without rewriting by default.
+- **proof-audit** builds a theorem dependency graph and locates exact logical gaps.
+- **claim-evidence-audit** checks claims against theorems, experiments, figures, tables, and conclusions in both directions.
+- **literature-positioning** verifies and synthesizes related work along precise technical axes.
+- **experiment-audit** checks design, comparison budgets, oracle accounting, failures, and reporting.
+- **latex-paper-audit** checks mechanical LaTeX and manuscript consistency.
 
-| Format | Target venues |
-|--------|---------------|
-| Theoretical journal | JMLR, Math. Programming, IEEE TSP, SIAM J. Opt. |
-| ~10-page theoretical conference | NeurIPS, ICML, ICLR, AISTATS |
-| ~10-page experimental conference | NeurIPS, ICML, ICLR |
-| ~5-page short conference | ICASSP, EUSIPCO, workshops |
+Results-to-writing is a mode inside `paper-writing` and `experiment-audit`, not a separate skill. This keeps quantitative interpretation rules in one shared reference.
+
+## Design
+
+The skill entrypoints live in `skills/`. Shared technical guidance lives in `references/`.
+
+```text
+skills/
+  paper-writing/SKILL.md
+  paper-review/SKILL.md
+  proof-audit/SKILL.md
+  claim-evidence-audit/SKILL.md
+  literature-positioning/SKILL.md
+  experiment-audit/SKILL.md
+  latex-paper-audit/SKILL.md
+
+references/
+  writing-style.md
+  claim-strength.md
+  paper-sections.md
+  optimization-theory.md
+  experiment-reporting.md
+  literature-positioning.md
+  latex-consistency.md
+  review-severity.md
+  venue-notes.md
+  rebuttals.md
+```
+
+Each skill loads only the references needed for its task. Review breadth belongs to `paper-review`. Deep formal, claim, experiment, literature, and source checks belong to their specialized skills.
+
+## Writing invariant
+
+Every prose-generating workflow follows the same standard:
+
+- direct, technical, and compact
+- confident when supported and qualified when required
+- no defensive writing or invented reviewer dialogue
+- no routine semicolons or em-dash-driven sentence structure
+- no generic AI academic filler
+- no unsupported promotion from observation or interpretation to formal claim
+- no manufactured limitations paragraph or paper roadmap
 
 ## Installation
 
+This repository includes a Claude Code plugin manifest at `.claude-plugin/plugin.json`. Clone the repository and load the repository root through your client's local plugin workflow. The individual skill entrypoints are under `skills/` for manual inspection or selective installation.
+
 ```bash
-# Clone into your Claude skills directory
-git clone https://github.com/Liuyuan999/paper-writing \
-    ~/.claude/skills/paper-writing
+git clone https://github.com/Liuyuan999/claude-skill-paper-writing.git
 ```
 
-Or manually copy:
-```bash
-cp -R paper-writing ~/.claude/skills/paper-writing
-```
+Keep the repository structure intact because the skills share the files in `references/`.
 
-## Usage
+## Example requests
 
-In any Claude Code session, invoke via the `/paper-writing` skill or just ask:
+- `Revise this theorem statement and assumption discussion using paper-writing.`
+- `Review this NeurIPS optimization paper without rewriting it.`
+- `Audit the proof dependency from Assumption 2 to Theorem 4.`
+- `Check whether every introduction claim is supported by a theorem or experiment.`
+- `Position this bilevel method against value-function and implicit-differentiation methods.`
+- `Audit whether these baselines use comparable oracle and wall-clock budgets.`
+- `Check this LaTeX project for broken references and inconsistent theorem notation.`
 
-> *"Help me write the intro for my NeurIPS bilevel optimization paper."*
-> *"Draft an abstract for a JMLR submission on multi-objective learning."*
-> *"Write my rebuttal response to the reviewers."*
-> *"Review my experiments section for an ICASSP paper."*
+## Reference projects
 
-The skill reads the relevant reference files automatically before drafting.
+The design was informed by mechanisms from these public projects without copying their domain-specific rules or large workflows:
 
-## File structure
+- [academic-writing-skills](https://github.com/WenyuChiou/academic-writing-skills)
+- [literature-review-skill](https://github.com/pinshuai/literature-review-skill)
+- [literature-review](https://github.com/chenlu-hung/literature-review)
+- [research-skills](https://github.com/jluo41/research-skills)
+- [AI-research-feedback](https://github.com/claesbackman/AI-research-feedback)
+- [claude-skills](https://github.com/lcrawfurd/claude-skills)
+- [awesome-academic-skills](https://github.com/O0000-code/awesome-academic-skills)
 
-```
-paper-writing/
-├── SKILL.md                     # Skill definition (router + workflow)
-└── references/
-    ├── general-principles.md    # SPJ, Widom, Farquhar/Foerster, Steinhardt, Zobel
-    ├── house-style.md           # Chen-group conventions & notation
-    ├── abstract-and-intro.md    # Fill-in-the-blank templates
-    ├── theory-writing.md        # Assumptions, theorems, proofs, penalty reformulation
-    ├── experiments.md           # Baselines, ablations, error bars, figures
-    ├── checklists.md            # NeurIPS-style checklist + pre-submission checklist
-    ├── rebuttals.md             # Response-to-reviewers playbook
-    └── paper-types/
-        ├── journal-theoretical.md
-        ├── conference-theoretical-10page.md
-        ├── conference-experimental-10page.md
-        └── conference-short-5page.md
-```
-
-## Knowledge sources
-
-**General best practices** distilled from:
-- Simon Peyton Jones, [*How to Write a Great Research Paper*](https://simon.peytonjones.org/great-research-paper/)
-- Jennifer Widom, [*Tips for Writing Technical Papers*](https://cs.stanford.edu/people/widom/paper-writing.html)
-- Sebastian Farquhar, [*How to Write ML Papers*](https://sebastianfarquhar.com/on-research/2024/11/04/how_to_write_ml_papers/) (building on [Foerster](https://www.jakobfoerster.com/how-to-ml-paper))
-- Jacob Steinhardt, [*Advice for Authors*](https://jsteinhardt.stat.berkeley.edu/blog/advice-for-authors)
-- Lipton & Steinhardt, [*Troubling Trends in ML Scholarship*](https://arxiv.org/abs/1807.03341)
-- [NeurIPS Paper Checklist](https://neurips.cc/public/guides/PaperChecklist)
-- Justin Zobel, *Writing for Computer Science*
-- Devi Parikh et al., [*How we write rebuttals*](https://deviparikh.medium.com/how-we-write-rebuttals-dc84742fece1)
-
-**House style** extracted from papers Lisha Chen and Tianyi Chen's lab in bilevel optimization and multi-objective learning (NeurIPS 2024/2025, ICML 2025,
-ICLR 2025, JMLR 2024, Math. Programming 2025).
-
-## Notes
-
-- The reference files contain **paraphrased patterns and templates** — no verbatim text from
-  source papers or guides.
-- The skill instructs Claude to generate **fresh prose** in the target style, never copy
-  from published papers.
+The adapted mechanisms include evidence mapping, thematic synthesis, citation verification, source-of-truth consistency, anchored review findings, deterministic mechanical checks, and explicit activation boundaries.
 
 ## License
 

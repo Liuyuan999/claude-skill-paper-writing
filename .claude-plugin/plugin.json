@@ -1,0 +1,19 @@
+{
+  "name": "academic-research-skills",
+  "description": "Focused skills for writing and auditing optimization, machine learning, theoretical ML, algorithms, and applied ML papers.",
+  "version": "0.2.0",
+  "author": {
+    "name": "Liuyuan Jiang"
+  },
+  "homepage": "https://github.com/Liuyuan999/claude-skill-paper-writing",
+  "repository": "https://github.com/Liuyuan999/claude-skill-paper-writing",
+  "license": "MIT",
+  "keywords": [
+    "academic-writing",
+    "optimization",
+    "machine-learning",
+    "proof-audit",
+    "paper-review",
+    "latex"
+  ]
+}
